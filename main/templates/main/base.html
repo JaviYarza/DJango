@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
     {% block title %}
-        Defecto
+        Javi's Page
     {% endblock title %}
     </title>
+    <link rel="stylesheet" type="text/css" href="{%static 'css/style.css'%}">
 </head>
 <body>
+
+    <div>
+    <ul>
+        <li><a href="admin">Admin</a></li>
+        <li><a href="">News</a></li>
+        <li><a href="">Contact</a></li>
+        <li><a href="">About</a></li>
+    </ul>
+    </div>
+
     <h1> Bienvenide </h1>
 
-    <p>Esta página es LGTBIQ+ friendly</p>
+    <p>Holaaaa {{name}}</p>
 
     <p>{{name}}</p>
 
