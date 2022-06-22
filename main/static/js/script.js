@@ -1,1 +1,1 @@
-alert("Buenaaaasss")
+console.log('Holi')
