@@ -8,9 +8,7 @@
     <h1>{{ls.name}}</h1>
     <ul>
     {% for item in ls.item_set.all %}
-        {% if item.complete == False %} 
-        <li>{{item.text}}</li>
-        {% endif %}
+        <li>{{item.text}} ---- {{item.complete}}</li>
     {% endfor %}
     </ul>
 {% endblock %}

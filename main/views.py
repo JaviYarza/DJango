@@ -22,10 +22,13 @@ def create(response):
         
         if form.is_valid():
             n = form.cleaned_data["name"]
+            check = form.cleaned_data["check"]
+            a= form.cleaned_data["text"]
             t = ToDoList(name=n)
             t.save()
+            t.item_set.create(text=a, complete=check)
             
-        return HttpResponseRedirect("/%i" %t.id)
+        return HttpResponseRedirect("/main/%i" %t.id)
             
     else:
         form = CreateNewList()
