@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import ToDoList, Item
-from .form import CreateNewList
+from .form import BuscaLista, CreateNewList
 '''
 def index(response, id):
     ls = ToDoList.objects.get(id=id)
@@ -33,5 +33,20 @@ def create(response):
     else:
         form = CreateNewList()
     return render(response, "main/create.html", {"form":form})
+
+def delete(response):
+    if response.method == "POST":
+        form = BuscaLista(response.POST)
+        
+        if form.is_valid():
+            n = form.cleaned_data["name"]
+            t = ToDoList.objects.get(name=n)
+            t.delete()
+            
+        return HttpResponse("Se ha eliminado correctamente el elemento")
+            
+    else:
+        form = BuscaLista()
+    return render(response, "main/delete.html", {"form":form})
 
 
