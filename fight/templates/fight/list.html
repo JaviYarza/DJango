@@ -1,0 +1,19 @@
+{% extends 'fight/base.html' %}
+
+{% block title %}
+    Gatito
+{% endblock %}
+
+{% block content %}
+    <h1>Nombre del gatito: {{gato.Nombre}}</h1>
+
+    <ul>
+        <li>Estilo de combate: {{gato.EstiloCombate}}</li>
+        <li>Descripción: {{gato.Descripcion}}</li>
+        <li>Puntos de vida: {{gato.PuntosVida}}</li>
+        <li>Probabilidad de crítico: {{gato.ProbabilidadCritico}}</li>
+        <li>Evasión: {{gato.Evasion}}</li>
+        <li>Ataque: {{gato.Ataque}}</li>
+    </ul>
+{% endblock %}
+    

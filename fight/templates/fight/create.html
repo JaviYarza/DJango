@@ -1,0 +1,16 @@
+{% extends 'fight/base.html' %}
+
+
+{% block title %}
+    Creación de personaje
+{% endblock title %}
+
+
+{% block content %}
+    Creación de gatito
+    <form method="post" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit", name="save"> Crear gatito</button>
+    </form>
+{% endblock content %}
