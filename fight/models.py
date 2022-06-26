@@ -10,7 +10,7 @@ class Gatos(models.Model):
     Ataque = models.DecimalField(default=10, max_digits=4,decimal_places=2)
     
     def __str__(self):
-        return self.name
+        return self.Nombre
     
 class Perros(models.Model):
     Nombre= models.CharField(max_length=200, unique=True)
@@ -22,5 +22,5 @@ class Perros(models.Model):
     Ataque = models.DecimalField(default=10, max_digits=4,decimal_places=2)
     
     def __str__(self):
-        return self.name
+        return self.Nombre
     

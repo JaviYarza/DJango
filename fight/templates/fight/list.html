@@ -8,6 +8,7 @@
     <h1>Nombre del gatito: {{gato.Nombre}}</h1>
 
     <ul>
+        <li>ID: {{id}}</li>
         <li>Estilo de combate: {{gato.EstiloCombate}}</li>
         <li>Descripción: {{gato.Descripcion}}</li>
         <li>Puntos de vida: {{gato.PuntosVida}}</li>
@@ -15,5 +16,11 @@
         <li>Evasión: {{gato.Evasion}}</li>
         <li>Ataque: {{gato.Ataque}}</li>
     </ul>
+
+    <form method="post" action="#">
+        {% csrf_token %}
+        {{forms}}
+        <button type="submit", name="save">Eliminar gatito</button>
+    </form>
 {% endblock %}
     

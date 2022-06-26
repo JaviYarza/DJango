@@ -1,8 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from fight.forms import CreateGato
 from fight.models import Gatos
+from fight.forms import eliminar
 
 # Create your views here.
 
@@ -10,8 +11,24 @@ def home(response):
     return render(response, 'fight/base.html', {})
 
 def list(response, id):
+    forms=eliminar()
+    print('Hola')
+    if response.method == "POST":
+        forms = eliminar(response.POST)
+        print('Hola')
+        if forms.is_valid():
+            check=forms.cleaned_data['eliminar']
+            print('Hola')
+            if check == True:
+                f=Gatos.objects.get(id=id)
+                f.delete()
+                return HttpResponseRedirect('../baseDatos')
     gatos = Gatos.objects.get(id=id)
-    return render(response, 'fight/list.html', {'gato':gatos})
+    return render(response, 'fight/list.html', {'gato':gatos, 'forms':forms, 'id':id})
+
+def datos(response):
+    gatos = Gatos.objects.all()
+    return render (response, 'fight/datos.html', {'gatos':gatos})
     
 
 def create(response):
@@ -19,10 +36,7 @@ def create(response):
     if response.method == "POST":
         forms = CreateGato(response.POST)
         
-        print("Estoy aqui")
-        
         if forms.is_valid():
-            print("Ahora aqui")
             nomb = forms.cleaned_data["name"]
             est = forms.cleaned_data["estilo"]
             descr= forms.cleaned_data["descr"]
@@ -42,12 +56,11 @@ def create(response):
                 Pcrit = 0.5
                 Ev = 2
                 At = 10
-            print(nomb, est, descr, Ps, Pcrit, Ev, At)
                 
             t = Gatos(Nombre=nomb,EstiloCombate=est[0],Descripcion=descr,PuntosVida=Ps,ProbabilidadCritico=Pcrit,Evasion=Ev,Ataque=At)
             t.save()
             
-        return HttpResponse("Se ha creado el gatito correctamente")
+        return HttpResponseRedirect('../%i' %t.id)
             
     else:
         forms = CreateGato()

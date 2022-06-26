@@ -1,3 +1,4 @@
+
 from django import forms
 
 class CreateGato(forms.Form):
@@ -5,3 +6,6 @@ class CreateGato(forms.Form):
     estilo = forms.MultipleChoiceField(label="Estilo de combate",widget=forms.CheckboxSelectMultiple,
                                           choices=(('Bonito', 'Bonito'),('Astuto', 'Astuto'),('Peligroso','Peligroso')))
     descr = forms.CharField(label="Descripción ", max_length=200)
+
+class eliminar(forms.Form):
+    eliminar = forms.BooleanField(label="")

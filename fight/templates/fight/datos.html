@@ -1,0 +1,15 @@
+{% extends 'fight/base.html' %}
+
+{% block title %}
+    Gatito
+{% endblock %}
+
+{% block content %}
+
+TUS GATITOS<br>
+
+{% for i in gatos %}
+    <li><a href="../{{i.id}}">{{i}}</a> </li>
+
+{% endfor %}
+{% endblock %}
