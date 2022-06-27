@@ -4,6 +4,7 @@ from django.shortcuts import render
 from fight.forms import CreateGato
 from fight.models import Gatos
 from fight.forms import eliminar
+from .fight import fight2
 
 # Create your views here.
 
@@ -12,13 +13,10 @@ def home(response):
 
 def list(response, id):
     forms=eliminar()
-    print('Hola')
     if response.method == "POST":
         forms = eliminar(response.POST)
-        print('Hola')
         if forms.is_valid():
             check=forms.cleaned_data['eliminar']
-            print('Hola')
             if check == True:
                 f=Gatos.objects.get(id=id)
                 f.delete()
@@ -43,18 +41,18 @@ def create(response):
             print(est[0])
             if est[0] == "Bonito":
                 Ps = 30
-                Pcrit = 0.3
-                Ev = 3
-                At = 7
+                Pcrit = 0.1
+                Ev = 1.2
+                At = 8
             elif est[0] == "Astuto":
                 Ps = 20
-                Pcrit = 0.7
-                Ev = 5
-                At = 8
+                Pcrit = 0.35
+                Ev = 2
+                At = 5
             elif est[0] == "Peligroso":
                 Ps = 25
-                Pcrit = 0.5
-                Ev = 2
+                Pcrit = 0.25
+                Ev = 1.5
                 At = 10
                 
             t = Gatos(Nombre=nomb,EstiloCombate=est[0],Descripcion=descr,PuntosVida=Ps,ProbabilidadCritico=Pcrit,Evasion=Ev,Ataque=At)
@@ -65,3 +63,8 @@ def create(response):
     else:
         forms = CreateGato()
     return render(response, "fight/create.html", {"form":forms})
+
+def fight(response):
+    x=fight2(1,2)
+    print(x)
+    return render(response, 'fight/fight.html', {'x':x})
