@@ -65,6 +65,5 @@ def create(response):
     return render(response, "fight/create.html", {"form":forms})
 
 def fight(response):
-    x=fight2(1,2)
-    print(x)
+    x=fight2(5,6)
     return render(response, 'fight/fight.html', {'x':x})
